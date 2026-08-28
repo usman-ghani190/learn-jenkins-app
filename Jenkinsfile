@@ -20,17 +20,10 @@ pipeline {
                 '''
             }
         }
-        stage('checking index.html'){
-            steps {
-                sh '''
-                    ls -la
-                    cat build/index.html
-                '''
-            }
-        }
         stage('Test'){
             steps {
                 sh '''
+                    test -f build/index.html
                     ls -la
                     npm test
                 '''
