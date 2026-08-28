@@ -16,7 +16,29 @@ pipeline {
                     node --version
                     npm ci
                     npm run build
-                    ls -la 
+                    ls -la
+                '''
+            }
+        }
+        stage('checking index.html'){
+            steps {
+                sh '''
+                    ls -la
+                    cat build/index.html
+                '''
+            }
+        }
+        stage('Test'){
+            agent {
+                docker{
+                    image 'node:18-alpine'
+                    reuseNode true
+                }
+            }
+            steps {
+                sh '''
+                    ls -la
+                    npm test
                 '''
             }
         }
