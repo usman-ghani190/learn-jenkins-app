@@ -3,6 +3,7 @@ pipeline {
 
     environment {
         NETLIFY_SITE_ID = '69ddba10-89cf-466c-a3a2-c38b32fdf291'
+        NETLIFY_AUTH_TOKEN = credentials('netlify-token')
     }
 
     stages {
@@ -79,6 +80,7 @@ pipeline {
                     npm install netlify-cli
                     node_modules/.bin/netlify --version
                     echo $NETLIFY_SITE_ID
+                    node_modules/.bin/netlify status
 
                 '''
             }
